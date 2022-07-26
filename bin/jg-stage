@@ -1,0 +1,42 @@
+#!/usr/bin/env rc
+
+# usage: jg stage [--dry-run] [--[un]tracked | --working-tree] 
+#        jg stage [--dry-run] <file> ...
+# 
+# Stage changes for commit
+#
+# --tracked                          add all tracked files to staging area
+# --untracked                        UNIMPLEMENTED
+# --working-tree                     add all files is working tree (cwd)
+# -n, --dry-run                      don't actually add files
+
+# parse until no more options
+while(~ $1 -*){
+    switch($1){
+    case --tracked
+        mode=$1
+    case --untracked
+        mode=$1
+    case --working-tree
+        mode=$1
+    case -n --dry-run
+        dryrun=(--dry-run)
+    case *
+        printf 'unkown option: %s' $1
+        exit 1
+    }
+    shift
+}
+
+switch($mode){
+case --tracked
+    git add --update $dryrun
+case --untracked
+    echo 'UNIMPLEMENTED option '^$mode
+    exit 1
+case --working-tree
+    git add -A $dryrun
+case *
+    git add $dryrun $*
+}
+

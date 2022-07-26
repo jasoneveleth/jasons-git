@@ -1,0 +1,33 @@
+#!/usr/bin/env rc
+
+# Run subcommands and aliases for jg
+#
+# This utility will call other utilities like so: `jg subcmd args ...` becomes
+# `jg-subcmd args ...` and will be searched for in $PATH.
+
+# find the subcmd
+subcmd=$1
+shift
+
+switch($subcmd){
+case st
+    subcmd=status
+case ci
+    subcmd=commit
+case ca 
+    subcmd=commit
+    args=(-a)
+case co 
+    subcmd=checkout
+case df 
+    subcmd=diff
+case lg 
+    subcmd=view-history
+case ps 
+    subcmd=push
+case pl 
+    subcmd=pull
+}
+
+exec jg-$subcmd $args $*
+

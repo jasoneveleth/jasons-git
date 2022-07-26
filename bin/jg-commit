@@ -1,0 +1,63 @@
+#!/usr/bin/env rc
+
+# usage: jg commit [--tracked | --staged | --working-tree] [--allow-empty] 
+#                  [--dry-run] [-m message]
+#
+# Save a group of changes together
+#
+# --message <msg>, -m <msg>  commit with message <msg>
+# --dry-run -n               don't actually do anything, just print out what's happening
+# --tracked                  stage all tracked files, then commit
+# --staged                   commit all staged files (default)
+# --working-tree             stage all working files, then commit
+# --allow-empty              allow a commit with no changes
+
+fn generate_branch_name {
+    branchname=tmp
+    index=0
+    while(git rev-parse --verify $branchname^$#index){
+        index=$index^0
+    }
+    printf '%s%s' $branchname $#index
+}
+
+while(){
+    # exit loop when args are done
+    ~ $#* 0 && break
+
+    switch($1){
+    case --tracked
+        mode=$1
+    case --staged
+        mode=$1
+    case --working-tree
+        mode=$1
+    case -m --message
+        message=(-m $2)
+        shift
+    case -n --dry-run
+        dryrun=--dry-run
+    case --allow-empty
+        allowempty=$1
+    case *
+        printf 'unkown option: %s' $1
+        exit 1
+    }
+    shift
+}
+
+switch($mode){
+case --tracked
+    jg stage $mode $dryrun
+case --working-tree
+    jg stage $mode $dryrun
+}
+
+git commit --verbose $message $dryrun $allowempty
+
+HELP TODO
+# # if we're in detached head mode
+# git symbolic-ref -q HEAD || {
+#     jg create-branch '{generate_branch_name}
+# }
+# 
