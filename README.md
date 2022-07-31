@@ -60,12 +60,33 @@ $ git graphviz --first-parent master | dotty /dev/stdin
 https://github.com/tj/git-extras
 https://github.com/gitless-vcs/gitless/tree/master/gitless/cli
 
+https://pypi.org/project/legit/0.1.1/
+https://github.com/trast/tbdiff
+https://github.com/dfabulich/easygit
+https://gitless.com/#vs
+
+https://github.com/newren/git/blob/master/personal-docs/merge-handling-workshop
+
+## Ideas
+
+hard mode JG_HARD_MODE -- be silent about helpful information, like
+undoing a reset
+
+## What do these do?
+
+git diff --check
+
+git ls-files -u
+
+git log --merge --left-right -p
+
 ## Goals
 
 TODO: Never lose data. Always create a backup ref (tmp branches, tmp files). https://gist.github.com/chx/85db0ebed1e02ab14b1a65b6024dea29, or git-fugitive and see what happens when you 'discard' with X
 I like the idea of printing out how to undo a reset.
 
 TODO: -n flag for every command which describes the action at 2 levels of abstraction: what happens in .git dir, and description of what happens at high level
+
 
 If a subcommand has the same name as a git subcommand, then the git command will act the same as it does. The `jg` version may be missing flags and arguments, but if you replace `jg` with `git` in a well formed command, both have the same behavior. Complete list of exceptions to this rule are highlighted below:
 
