@@ -1,0 +1,4 @@
+#!/usr/bin/env rc
+
+$EDITOR `{dirname $0}^/jg
+
