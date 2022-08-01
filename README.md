@@ -20,6 +20,7 @@
 * [ ] `root` ^^
 * [ ] `alias` to edit the main disbatch file
 * [ ] `undo-commit` ^^ or reset --soft HEAD^
+* [ ] `reword-commit` by default takes the last
 * [ ] `track`
 * [ ] `untrack`
 * [ ] `checkout` -- maybe output whether remote branch is up-to-date
