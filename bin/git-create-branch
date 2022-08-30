@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+test $# -eq 0 && echo "branch argument required." 1>&2 && exit 1
+
+while test $# != 0
+do
+	case $1 in
+		--from)
+			if [[ -n $2 ]]; then
+				START_POINT=$2
+				shift
+			fi
+			;;
+		*)
+			BRANCH=$1
+	esac
+	shift
+done
+
+test -z $BRANCH && echo "branch argument required." 1>&2 && exit 1
+
+if [[ -n $START_POINT ]]
+then
+    git checkout -b $BRANCH $START_POINT
+else
+    git checkout -b $BRANCH
+fi

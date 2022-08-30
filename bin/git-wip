@@ -1,0 +1,5 @@
+#!/usr/bin/env rc
+
+git stage --tracked
+git commit -m 'wip'
+

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# other names: `replace-ref` `redirect-branch`
+
+while test $# != 0
+do
+	case $1 in
+		--to)
+			if [[ -n $2 ]]; then
+				COMMITISH=$2
+				shift
+			fi
+			;;
+		*)
+			BRANCH=$1
+	esac
+	shift
+done
+
+test -z $BRANCH && echo "branch argument required.\nex: git point-branch master --to 43ab7872" 1>&2 && exit 1
+test -z $COMMITISH && echo "commit argument required.\nex: git point-branch master --to 43ab7872" 1>&2 && exit 1
+
+# TODO: capture what head points to and check it out after
+# TODO: (which does `git branch -f`/`git update-ref`/`git reset <commitish>`) --
+#       won't change staging area or working tree. 
+
+git checkout $BRANCH
+git reset --hard $COMMITISH
