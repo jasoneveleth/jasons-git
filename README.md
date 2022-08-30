@@ -2,50 +2,23 @@
 
 ## New commands
 
-* [x] `stage` -- subset of `git add`
 * [ ] `search-history` -- a subset of `git log`, `git log -S $string $filename` or `git log -G $regex $filename` or trace evolution fo the line range `git log -L<start>,<end>:<file>` or function `git log -L<func>:<file>`
 * [ ] `cherry-pick-file` -- alt names: `pluck`, `snipe` `replace-obj` to make a particular file in working tree (or staging area with --staged) resemble another object (or add a new object).
 * [ ] `cherry-pick-commit` -- subset of `git cherry-pick`, new commit that emulates what an old commit did
-* [ ] `view-history` -- a subset of `git log`
 * [ ] `replicate` -- takes a `--staged` flag, make working tree look like this commit (but don't change HEAD and maybe don't change staging area), alt names: `copy-to`
-* [ ] `point-branch` -- (which does `git branch -f`/`git update-ref`/`git reset <commitish>`) -- won't change staging area or working tree. other names: `replace-ref` `redirect-branch` 
 * [ ] `delete` -- stage the deletion of file without affecting working tree, `git rm --cached <file>` or `git reset <file>`
-* [ ] `fast-forward` `git merge --ff-only`
-* [ ] `abort` -- just like [this](https://github.com/tj/git-extras/blob/master/bin/git-abort)
-* [ ] `create-branch` -- exactly what it sounds like
-* [ ] `delete-branch` -- exactly like https://github.com/tj/git-extras/blob/master/bin/
-* [ ] `rename-branch` ^^
 * [ ] `rename-remote` ^^
 * [ ] `delete-tag` ^^
 * [ ] `root` ^^
-* [ ] `alias` to edit the main disbatch file
 * [ ] `undo-commit` ^^ or reset --soft HEAD^
 * [ ] `reword-commit` by default takes the last
-* [ ] `track`
-* [ ] `untrack`
-* [ ] `checkout` -- maybe output whether remote branch is up-to-date
 * [ ] `ignore` -- with a --untracked flag to ignore all untracked, or unstaged
 * [ ] `editmsg` -- edit last commit message
 * [ ] `amend` -- has --same-message, and same flags as commit
 * [ ] `unstage` -- subset of `git restore --staged`, takes an `--all` flag (`git reset`) -- also include `git rm --cached` for newly added files
 * [ ] a command to switch the staging area and working tree?
 
-## From git
-
-* [x] `commit` -- much more like `git commit`, only commits staged changes, also creates a temporary branch if its in detached state
-* [ ] `grep` -- subset of `git grep` https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history
-* [ ] `clean` like git clean
-* [ ] `revert` -- subset of `git revert`, undoes an old commit
-* [ ] `tag` -- identical to `git tag`
-* [ ] `merge` -- `git merge --no-ff` by default
-* [ ] `diff` -- auto `git diff HEAD` unless args provided, it assumes working tree, so `--staged` will diff working tree with staging area, and `--staged HEAD` will diff staged with commit, `git diff <file1> <file2>`, or `git diff <file1> <commit>` implies `git diff <file1> <commit>:<file1>` -- have a table to my diff vs git's diff
-* [ ] `pull` -- subset of `git pull`
-* [ ] `bisect` -- subset of `bisect`
-* [ ] `remote` -- subset of `remote`
-* [ ] `rebase` -- subset of `rebase`
 * [ ] `status` -- should show: unstaged changes, staged changes, untracked files, (tracked files if asked), (ignored files if asked), should tell you if you're branch is behind remote, and advise what to do if you are merging/rebasing/bisecting/etc
-
-## Less important
 
 * [ ] `create-fake-repo` based on input file with a tree inside (which looks like git log --graph --all)
 * [ ] `active-branches` -- branches with stashes on them

@@ -1,5 +1,0 @@
-#!/usr/bin/env rc
-
-if (~ $#* 0) *=HEAD
-
-git diff $*

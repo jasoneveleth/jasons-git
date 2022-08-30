@@ -1,5 +1,0 @@
-#!/usr/bin/env rc
-
-jg stage --tracked
-jg commit -m 'wip'
-
