@@ -1,5 +1,5 @@
 #!/usr/bin/env rc
 
-git stage --tracked
+git add -A
 git commit -m 'wip'
 

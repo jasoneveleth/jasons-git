@@ -13,6 +13,14 @@ do
   git branch -D $branch || true
   # Avoid deleting local upstream
   [ "$remote" == "." ] && continue
-  git branch -d -r $remote/$branch || continue
-  git push $remote :$ref
+
+  # check if remote branch exists, since set -e, we need to capture error code
+  git ls-remote --exit-code --heads $remote $branch || error_code=$?
+  if [ "$error_code" -eq 2 ]; then
+      echo remote branch "$remote/$branch" not found
+  else
+    git branch -d -r $remote/$branch
+    git push $remote :$ref
+  fi
 done
+

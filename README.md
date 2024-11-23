@@ -11,10 +11,11 @@
 * [ ] `delete-tag` ^^
 * [ ] `root` ^^
 * [ ] `undo-commit` ^^ or reset --soft HEAD^
-* [ ] `reword-commit` by default takes the last
+* [ ] `move-tag --from` 
 * [ ] `ignore` -- with a --untracked flag to ignore all untracked, or unstaged
+* [ ] `reword-commit` by default takes the last
 * [ ] `editmsg` -- edit last commit message
-* [ ] `amend` -- has --same-message, and same flags as commit
+* [ ] `amend` -- takes --same-message, and same flags as commit
 * [ ] `unstage` -- subset of `git restore --staged`, takes an `--all` flag (`git reset`) -- also include `git rm --cached` for newly added files
 * [ ] a command to switch the staging area and working tree?
 
@@ -41,11 +42,6 @@ https://gitless.com/#vs
 
 https://github.com/newren/git/blob/master/personal-docs/merge-handling-workshop
 
-## Ideas
-
-hard mode JG_HARD_MODE -- be silent about helpful information, like
-undoing a reset
-
 ## What do these do?
 
 git diff --check
@@ -58,17 +54,4 @@ git log --merge --left-right -p
 
 TODO: Never lose data. Always create a backup ref (tmp branches, tmp files). https://gist.github.com/chx/85db0ebed1e02ab14b1a65b6024dea29, or git-fugitive and see what happens when you 'discard' with X
 I like the idea of printing out how to undo a reset.
-
-TODO: -n flag for every command which describes the action at 2 levels of abstraction: what happens in .git dir, and description of what happens at high level
-
-
-If a subcommand has the same name as a git subcommand, then the git command will act the same as it does. The `jg` version may be missing flags and arguments, but if you replace `jg` with `git` in a well formed command, both have the same behavior. Complete list of exceptions to this rule are highlighted below:
-
-| `jg` command | `git` command |
-| --- | --- |
-| `jg diff` | `git diff HEAD` |
-| `jg merge` | `git merge --no-ff` |
-| `jg commit --tracked` | `git commit -a` |
-| `jg commit --staged` | `git commit` |
-| `jg commit --working` | `git add -A; git commit` |
 
